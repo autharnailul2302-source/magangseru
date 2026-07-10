@@ -609,7 +609,13 @@ img,svg{display:block;}
   display:flex;align-items:center;justify-content:center;
 }
 /* varian untuk tombol yang berdiri sendiri di pojok kanan atas kartu */
-.modal-x-close--floating{position:absolute;top:20px;right:22px;z-index:10;}
+.modal-x-close--floating{
+  position:absolute;top:20px;right:22px;z-index:10;
+  background:rgba(36,63,92,.92);border-color:rgba(255,255,255,.28);
+  color:rgba(246,250,254,.95);
+  box-shadow:0 4px 14px -4px rgba(0,0,0,.45);
+}
+.modal-x-close--floating:hover{background:rgba(36,63,92,1);}
 
 
 
@@ -787,28 +793,30 @@ img,svg{display:block;}
 .btn-icon{
   width:clamp(34px,4vw,40px);height:clamp(34px,4vw,40px);
   border-radius:11px;
-  background:rgba(255,255,255,0.07);
-  border:1.5px solid rgba(255,255,255,0.13);
-  box-shadow:0 2px 8px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.07);
+  background:rgba(20,26,38,.45);
+  border:1.5px solid rgba(255,255,255,0.22);
+  box-shadow:0 3px 10px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.07);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
   display:flex;align-items:center;justify-content:center;
   font-size:clamp(14.5px,1.7vw,16px);
   color:rgba(255,255,255,0.80);
   transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
 .btn-icon:hover{
-  background:rgba(255,255,255,0.13);
+  background:rgba(20,26,38,.62);
   transform:translateY(-2px);
   box-shadow:0 6px 14px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.12);
 }
 .hub-tb-pill{
   display:inline-flex;align-items:center;gap:6px;
   padding:7px 13px 7px 10px;border-radius:var(--radius-pill);
-  background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.2);
-  color:rgba(255,255,255,.9);font-size:13.5px;font-weight:700;
-  cursor:pointer;box-shadow:none;
+  background:rgba(20,26,38,.45);border:1.5px solid rgba(255,255,255,.22);
+  color:rgba(255,255,255,.92);font-size:13.5px;font-weight:700;
+  cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.22);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
   transition:background .2s,transform .15s;white-space:nowrap;flex-shrink:0;
 }
-.hub-tb-pill:hover{background:rgba(255,255,255,.17);transform:translateY(-1px);}
+.hub-tb-pill:hover{background:rgba(20,26,38,.62);transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,0,0,.3);}
 .hub-tb-pill svg{flex-shrink:0;}
 .hub-tb-pill-label{letter-spacing:.01em;}
 @media (max-width:640px){
@@ -1194,8 +1202,8 @@ img,svg{display:block;}
    =========================================================== */
 .menu-top-controls{
   position:absolute;
-  top:clamp(10px,2.2vh,22px);
-  right:clamp(10px,2.2vw,22px);
+  top:calc(clamp(10px,2.2vh,22px) + env(safe-area-inset-top,0px));
+  right:calc(clamp(10px,2.2vw,22px) + env(safe-area-inset-right,0px));
   z-index:5;
   display:flex;align-items:center;
   gap:10px;
@@ -3728,11 +3736,11 @@ img,svg{display:block;}
 .tut-btn-next:active{transform:translateY(1px);box-shadow:0 1px 0 0 rgba(0,0,0,.28);}
 .tut-btn-skip{padding:9px 12px;background:rgba(246,250,254,.07);border:1px solid rgba(246,250,254,.12);border-radius:10px;font-size:13.5px;font-weight:600;color:rgba(246,250,254,.8);cursor:pointer;transition:background .15s,color .15s;}
 .tut-btn-skip:hover{background:rgba(246,250,254,.12);color:rgba(246,250,254,.7);}
-#btn-hub-tutorial{display:inline-flex;align-items:center;gap:6px;padding:5px 12px 5px 8px;border-radius:var(--radius-pill);background:rgba(255,201,138,.12);border:1.5px solid rgba(255,201,138,.28);color:var(--gold-300);font-size:14px;font-weight:700;cursor:pointer;box-shadow:none;transition:background .2s,transform .15s;white-space:nowrap;letter-spacing:.01em;flex-shrink:0;}
-#btn-hub-tutorial:hover{background:rgba(255,201,138,.22);transform:translateY(-1px);}
+#btn-hub-tutorial{display:inline-flex;align-items:center;gap:6px;padding:5px 12px 5px 8px;border-radius:var(--radius-pill);background:rgba(255,201,138,.14);border:1.5px solid rgba(255,201,138,.38);color:var(--gold-300);font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.22);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);transition:background .2s,transform .15s,box-shadow .15s;white-space:nowrap;letter-spacing:.01em;flex-shrink:0;}
+#btn-hub-tutorial:hover{background:rgba(255,201,138,.24);transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,0,0,.3);}
 #btn-hub-tutorial svg{flex-shrink:0;}
-#btn-hub-glossary{display:inline-flex;align-items:center;gap:6px;padding:5px 12px 5px 8px;border-radius:var(--radius-pill);background:rgba(122,201,214,.12);border:1.5px solid rgba(122,201,214,.28);color:var(--teal-300, #7ac9d6);font-size:14px;font-weight:700;cursor:pointer;box-shadow:none;transition:background .2s,transform .15s;white-space:nowrap;letter-spacing:.01em;flex-shrink:0;}
-#btn-hub-glossary:hover{background:rgba(122,201,214,.22);transform:translateY(-1px);}
+#btn-hub-glossary{display:inline-flex;align-items:center;gap:6px;padding:5px 12px 5px 8px;border-radius:var(--radius-pill);background:rgba(122,201,214,.14);border:1.5px solid rgba(122,201,214,.38);color:var(--teal-300, #7ac9d6);font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.22);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);transition:background .2s,transform .15s,box-shadow .15s;white-space:nowrap;letter-spacing:.01em;flex-shrink:0;}
+#btn-hub-glossary:hover{background:rgba(122,201,214,.24);transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,0,0,.3);}
 #btn-hub-glossary svg{flex-shrink:0;}
 /* ── Term tooltip (ⓘ) — muncul di soal/teks yang mengandung istilah teknis ── */
 .term-info{border-bottom:1.5px dotted rgba(255,201,138,.7);cursor:pointer;white-space:nowrap;}
