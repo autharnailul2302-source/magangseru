@@ -441,7 +441,13 @@ img,svg{display:block;}
 .achv-tab-pane.active{display:flex;}
 /* filter leaderboard nasional */
 .lb-filters{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;flex:0 0 auto;}
-.lb-nasional-wrap{flex:1;min-height:0;overflow:hidden;}
+.lb-nasional-wrap{
+  flex:1;min-height:0;
+  overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.lb-nasional-wrap::-webkit-scrollbar{display:none;}
 /* paging leaderboard */
 .lb-paging{display:flex;align-items:center;gap:6px;margin-top:12px;justify-content:center;}
 .lb-pg-btn{padding:6px 13px;border-radius:9px;background:var(--ink-800);border:1px solid rgba(61,143,214,.35);color:var(--teal-300);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;}
@@ -499,15 +505,13 @@ img,svg{display:block;}
   width:min(460px,100%);
   max-height:88vh;
   overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   box-shadow:var(--shadow-deep);
   animation:audioCardIn .35s cubic-bezier(.2,.9,.25,1);
-  scrollbar-width:thin;
-  scrollbar-color:rgba(255,201,138,.35) transparent;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
 }
-.avatar-card::-webkit-scrollbar{width:5px;}
-.avatar-card::-webkit-scrollbar-track{background:transparent;}
-.avatar-card::-webkit-scrollbar-thumb{background:rgba(255,201,138,.35);border-radius:99px;}
-.avatar-card::-webkit-scrollbar-thumb:hover{background:rgba(255,201,138,.55);}
+.avatar-card::-webkit-scrollbar{display:none;}
 .avatar-card h2{
   font-family:var(--font-display);
   font-size:clamp(17px,2.2vw,21px);
@@ -667,8 +671,12 @@ img,svg{display:block;}
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:8px;
-  flex:1;overflow:hidden;min-height:0;
+  flex:1;overflow-y:auto;min-height:0;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
 }
+.about-grid::-webkit-scrollbar{display:none;}
 .about-pager{
   display:flex;align-items:center;justify-content:center;gap:14px;
   margin-top:10px;flex-shrink:0;
@@ -1703,7 +1711,13 @@ img,svg{display:block;}
 
 /* ── Wrapper daftar Prestasiku: list mengisi sisa ruang, pager tetap di bawah ── */
 .achv-list-wrap{display:flex;flex-direction:column;flex:1;min-height:0;}
-.achv-list{flex:1;min-height:0;overflow:hidden;}
+.achv-list{
+  flex:1;min-height:0;
+  overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.achv-list::-webkit-scrollbar{display:none;}
 .achv-pager{
   display:flex;align-items:center;justify-content:center;gap:14px;
   flex:0 0 auto;padding-top:10px;
@@ -2531,8 +2545,12 @@ img,svg{display:block;}
 .help-scroll-area{
   flex:1;
   min-height:0;
-  overflow:hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
 }
+.help-scroll-area::-webkit-scrollbar{display:none;}
 .help-pager{
   display:flex;align-items:center;justify-content:center;gap:14px;
   margin-top:14px;flex-shrink:0;
@@ -3528,6 +3546,34 @@ img,svg{display:block;}
    RESPONSIVE — HP PORTRAIT (max-width: 640px)
    =========================================================== */
 @media (max-width: 640px) {
+  /* ── Modal "Level Selesai" (Pak Authar + Materi) — khusus HP:
+     dari layout horizontal (avatar sisi kiri penuh) jadi vertikal
+     (avatar jadi header kompak di atas). Di tablet/laptop/desktop
+     (>640px) tetap pakai layout aslinya, tidak berubah. ── */
+  #level-review-overlay .lr-body { flex-direction: column !important; }
+  #level-review-overlay .lr-left {
+    width: 100% !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(246,250,254,.08) !important;
+    gap: 10px;
+  }
+  #level-review-overlay .lr-glow { display: none !important; }
+  #level-review-overlay .lr-avatar-img {
+    width: 44px !important;
+    height: 44px !important;
+    flex: 0 0 auto !important;
+    margin-top: 0 !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+    border-radius: 50% !important;
+    background: rgba(246,250,254,.08);
+  }
+  #level-review-overlay .lr-name-block { margin-top: 0 !important; text-align: left !important; }
+
   /* Topbar ringkas */
   .topbar { padding: 6px 10px; gap: 6px; }
   .level-title { font-size: 13px; }
@@ -3625,7 +3671,8 @@ img,svg{display:block;}
 
   /* Mission body stack vertikal di HP */
   #screen-l2 .mission-body,
-  #screen-l3 .mission-body { flex-direction: column; }
+  #screen-l3 .mission-body,
+  #screen-x6 .mission-body { flex-direction: column; }
   .l2-pool { flex: 0 0 auto; max-height: 30vh; overflow: hidden; }
   .l2-dropzones-row { flex-direction: column; }
   .inbox-list { flex: 0 0 auto; max-height: 30vh; overflow-y: auto; }
@@ -3753,7 +3800,8 @@ img,svg{display:block;}
   .x1-controls { gap: 10px; }
   .quiz-card { width: 96%; }
   /* Level 2: stack vertikal */
-  #screen-l2 .mission-body { flex-direction: column; gap: 8px; }
+  #screen-l2 .mission-body,
+  #screen-x6 .mission-body { flex-direction: column; gap: 8px; }
   .l2-pool { flex: 0 0 auto; max-height: 35vh; overflow: hidden; }
   .l2-zones { flex: 1; }
   .l2-dropzones-row { flex-direction: column; }
@@ -4124,7 +4172,7 @@ img,svg{display:block;}
         <path class="sw sw3" d="M61 18 Q75 40 61 62" stroke="#FFD080" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
       </svg>
     </div>
-    <h2>Aktifkan Audio?</h2>
+    <h2>Aktifkan Suara?</h2>
     <p>Gim ini dilengkapi musik latar seru dan efek suara saat jawaban benar/salah. Kamu bisa mengatur keduanya kapan saja lewat ikon speaker di layar.</p>
     <div class="audio-btns">
       <button class="btn-primary" id="audio-yes">🔊 Ya, aktifkan</button>
@@ -6194,6 +6242,10 @@ function showScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active','panic-mode'));
   const el=document.getElementById('screen-'+name);
   if(el) el.classList.add('active');
+  if(name==='l1' && window.scheduleFitL1Card){
+    window.scheduleFitL1Card();
+    setTimeout(window.scheduleFitL1Card, 350);
+  }
   if(name==='hub'){
     renderHub();
     switchBgm('bgm-hub');
@@ -6278,7 +6330,10 @@ function hideEko(){ document.getElementById('eko-modal-backdrop').classList.remo
 function openHelp(){
   // Tampilkan modal DULU sebelum ukur tinggi utk paging (lihat catatan di paginateHelpList)
   document.getElementById('help-backdrop').classList.add('show');
-  paginateHelpList();
+  // Tunda pengukuran 2x rAF: di HP, address bar & animasi modal bisa belum
+  // selesai menyesuaikan tinggi viewport saat frame pertama, jadi
+  // perhitungan baris/kolom yang muat bisa meleset kalau diukur langsung.
+  requestAnimationFrame(function(){ requestAnimationFrame(paginateHelpList); });
 }
 function closeHelp(){ document.getElementById('help-backdrop').classList.remove('show'); }
 
@@ -6303,32 +6358,9 @@ function paginateHelpList(){
   const itemEls = gridEl.querySelectorAll('.help-item');
   if(!itemEls.length) return;
 
-  // Hitung berapa kolom dalam 1 baris (elemen dgn offsetTop sama dgn elemen pertama)
-  const firstTop = itemEls[0].offsetTop;
-  let cols=0;
-  for(let i=0;i<itemEls.length;i++){
-    if(itemEls[i].offsetTop===firstTop) cols++; else break;
-  }
-  cols = Math.max(1, cols);
-
-  // Tinggi baris TERTINGGI di antara semua baris (bukan cuma baris pertama)
-  // — biar kartu yang isinya lebih panjang gak pernah kepotong.
-  const gapPx = parseFloat(getComputedStyle(gridEl).rowGap) || 8;
-  let rowH = itemEls[0].offsetHeight;
-  for(let r=0; r*cols < itemEls.length; r++){
-    let tallest=0;
-    for(let c=0;c<cols;c++){
-      const idx=r*cols+c;
-      if(idx>=itemEls.length) break;
-      tallest=Math.max(tallest, itemEls[idx].offsetHeight);
-    }
-    rowH = Math.max(rowH, tallest);
-  }
-  rowH += gapPx;
-  const availH = gridEl.parentElement.clientHeight;
-  let rowsFit = 1;
-  if(rowH>0 && availH>0) rowsFit = Math.max(1, Math.floor(availH/rowH));
-  const perPage = cols*rowsFit;
+  // Fixed 3 kartu per halaman (biar tiap kartu jadi lebih lebar — grid
+  // auto-fit otomatis ngisi sisa lebar baris ke kartu yg ada saat cuma 3).
+  const perPage = 3;
   const totalPages = Math.max(1, Math.ceil(items.length/perPage));
   let page=0;
 
@@ -6373,34 +6405,9 @@ function paginateAboutList(){
   const itemEls = gridEl.querySelectorAll('.about-item');
   if(!itemEls.length) return;
 
-  const firstTop = itemEls[0].offsetTop;
-  let cols=0;
-  for(let i=0;i<itemEls.length;i++){
-    if(itemEls[i].offsetTop===firstTop) cols++; else break;
-  }
-  cols = Math.max(1, cols);
-
-  // Pakai tinggi baris TERTINGGI di antara semua baris (bukan cuma baris
-  // pertama) — kalau salah satu kartu isinya lebih panjang dari yang lain,
-  // baris itu ikut lebih tinggi, dan itu yang harus jadi acuan supaya
-  // kartu tsb gak pernah kepotong di halaman manapun ia jatuh.
-  const gapPx = parseFloat(getComputedStyle(gridEl).rowGap) || 8;
-  let rowH = itemEls[0].offsetHeight;
-  for(let r=0; r*cols < itemEls.length; r++){
-    let tallest=0;
-    for(let c=0;c<cols;c++){
-      const idx=r*cols+c;
-      if(idx>=itemEls.length) break;
-      tallest=Math.max(tallest, itemEls[idx].offsetHeight);
-    }
-    rowH = Math.max(rowH, tallest);
-  }
-  rowH += gapPx;
-
-  const availH = gridEl.clientHeight;
-  let rowsFit = 1;
-  if(rowH>0 && availH>0) rowsFit = Math.max(1, Math.floor(availH/rowH));
-  const perPage = cols*rowsFit;
+  // Fixed 3 kartu per halaman (biar tiap kartu jadi lebih lebar — grid
+  // auto-fit otomatis ngisi sisa lebar baris ke kartu yg ada saat cuma 3).
+  const perPage = 3;
   const totalPages = Math.max(1, Math.ceil(items.length/perPage));
   let page=0;
 
@@ -6525,7 +6532,7 @@ function renderHub(){
     const doneCount2=Object.values(state.done).filter(Boolean).length;
     let msg='Hari ini apa yang harus aku lakukan lagi ya? 🤔';
     if(doneCount2===0) msg='Hari ini apa yang harus aku lakukan lagi ya? 🤔';
-    else if(doneCount2>=totalStepsForBubble) msg='Semua tugas sudah selesai! Aku siap promosi! 🎉';
+    else if(doneCount2>=totalStepsForBubble) msg='Semua tugas sudah selesai! Mau main lagi? Klik badge 🛡️ di tiap level buat coba Mode Tantangan! 🎉';
     else if(doneCount2<totalStepsForBubble*0.5) msg='Ayo semangat! Masih ada tugas yang belum selesai 💪';
     else msg='Wah, sudah hampir selesai! Tinggal sedikit lagi~ 🌟';
     // reset bubble animation
@@ -6814,23 +6821,23 @@ function showLevelReview(levelKey){
     '</div>'+
 
     // ── Body: left (avatar) + right (konten) ─────────────────────
-    '<div style="display:flex;flex:1;min-height:0;overflow:hidden;">'+
+    '<div class="lr-body" style="display:flex;flex:1;min-height:0;overflow:hidden;">'+
 
       // LEFT — Pak Authar avatar + speech bubble
-      '<div style="width:clamp(160px,24%,220px);flex:0 0 auto;background:linear-gradient(180deg,rgba(44,93,133,.25) 0%,rgba(12,32,49,.4) 100%);border-right:1px solid rgba(246,250,254,.07);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:14px 12px 16px;position:relative;overflow:hidden;">'+
+      '<div class="lr-left" style="width:clamp(160px,24%,220px);flex:0 0 auto;background:linear-gradient(180deg,rgba(44,93,133,.25) 0%,rgba(12,32,49,.4) 100%);border-right:1px solid rgba(246,250,254,.07);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:14px 12px 16px;position:relative;overflow:hidden;">'+
         // decorative glow behind avatar
-        '<div style="position:absolute;bottom:80px;left:50%;transform:translateX(-50%);width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(74,144,217,.18) 0%,transparent 70%);pointer-events:none;"></div>'+
+        '<div class="lr-glow" style="position:absolute;bottom:80px;left:50%;transform:translateX(-50%);width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(74,144,217,.18) 0%,transparent 70%);pointer-events:none;"></div>'+
         // Avatar image
-        '<img src="avatar_authar.png" id="lr-authar-img" alt="Pak Authar" style="width:clamp(100px,80%,150px);object-fit:contain;object-position:bottom center;flex:1;min-height:0;display:block;filter:drop-shadow(0 8px 20px rgba(0,0,0,.5));transition:filter .3s ease;margin-top:auto;">'+
+        '<img src="avatar_authar.png" id="lr-authar-img" class="lr-avatar-img" alt="Pak Authar" style="width:clamp(100px,80%,150px);object-fit:contain;object-position:bottom center;flex:1;min-height:0;display:block;filter:drop-shadow(0 8px 20px rgba(0,0,0,.5));transition:filter .3s ease;margin-top:auto;">'+
         // Name badge
-        '<div style="margin-top:8px;text-align:center;">'+
+        '<div class="lr-name-block" style="margin-top:8px;text-align:center;">'+
           '<div style="font-family:var(--font-display);font-size:14px;font-weight:800;color:var(--paper-50);">Pak Authar</div>'+
           '<div style="font-size:13.5px;color:var(--teal-200,#7dd3fa);font-weight:700;letter-spacing:.05em;">Pembimbing Magang</div>'+
         '</div>'+
       '</div>'+
 
       // RIGHT — tabs + konten
-      '<div style="flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;">'+
+      '<div class="lr-right" style="flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;">'+
 
         // Speech bubble Pak Authar (fixed di atas konten)
         '<div id="lr-bubble" style="margin:10px 16px 0;background:linear-gradient(135deg,rgba(74,144,217,.15),rgba(44,93,133,.12));border:1px solid rgba(74,144,217,.3);border-radius:14px;padding:10px 14px;position:relative;">'+
@@ -7962,7 +7969,7 @@ function openAchievements(){
       }
     }
 
-    const done=Object.assign({l1:false,l2:false,l3:false,x1:false,x2:false,x3:false,x4:false}, saved.done||{});
+    const done=Object.assign({l1:false,l2:false,l3:false,x1:false,x2:false,x3:false,x4:false,x5:false,x6:false}, saved.done||{});
     const stars=Object.assign({l1:0,l2:0,l3:0}, saved.stars||{});
     const savedScore=Object.assign({l1:0,l2:0,l3:0}, saved.score||{});
     const x1Best=saved.x1Best||0;
@@ -8024,6 +8031,15 @@ function openAchievements(){
     // ── Badge koleksi ──
     if(badgesEl){
       const BADGES=[
+        { earned:!!done.l1, icon:'🔐', label:'Penjaga<br>Akun',
+          sub: done.l1 ? (stars.l1||0)+' bintang' : 'Selesaikan Level 1',
+          isNew: !!done.l1 },
+        { earned:!!done.l2, icon:'🗂️', label:'Ahli<br>Hak Akses',
+          sub: done.l2 ? (stars.l2||0)+' bintang' : 'Selesaikan Level 2',
+          isNew: !!done.l2 },
+        { earned:!!done.l3, icon:'📧', label:'Pemburu<br>Phishing',
+          sub: done.l3 ? (stars.l3||0)+' bintang' : 'Selesaikan Level 3',
+          isNew: !!done.l3 },
         { earned:!!done.x1, icon:'💰', label:'Insentif<br>Lembur',
           sub: done.x1 ? 'Skor '+x1Best : 'Selesaikan Lembur',
           isNew: !!done.x1 && x1Best>=120 },
@@ -8044,7 +8060,13 @@ function openAchievements(){
           isNew: false },
         { earned:!!done.x4, icon:'🧯', label:'Penanggap<br>Insiden',
           sub: done.x4 ? 'Urutan Benar' : 'Selesaikan Insiden',
-          isNew: !!done.x4 }
+          isNew: !!done.x4 },
+        { earned:!!done.x5, icon:'📞', label:'Anti<br>Penipuan',
+          sub: done.x5 ? 'Telepon Aman' : 'Selesaikan Telepon',
+          isNew: !!done.x5 },
+        { earned:!!done.x6, icon:'💾', label:'Ahli<br>Backup',
+          sub: done.x6 ? 'Puzzle Tersusun' : 'Selesaikan Puzzle',
+          isNew: !!done.x6 }
       ];
       renderBadgesPaged(badgesEl, BADGES);
     }
@@ -10401,7 +10423,7 @@ function buildNarasiKembaliScenes(){
       charLeft:  { src: 'avatar_rizka.png',  show: false, dim: false },
       charRight: { src: 'avatar_authar.png', show: true,  dim: false },
       speaker: 'Pak Authar',
-      text: '"Di Jurnal Magang ini masih banyak tantangan baru yang menunggumu. Soal-soal baru terus hadir — tidak akan pernah habis! Semakin sering berlatih, semakin tajam kemampuanmu."'
+      text: '"Di Jurnal Magang ini masih ada Mode Tantangan, lho. Sekarang tiap level punya badge 🛡️ — klik itu buat main ulang dengan soal baru yang lebih banyak dan lebih rumit. Nggak akan pernah habis! Semakin sering berlatih, semakin tajam kemampuanmu."'
     },
     {
       bg: BG.backoffice,
