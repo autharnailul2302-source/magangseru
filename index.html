@@ -1668,7 +1668,11 @@ img,svg{display:block;}
   box-shadow:0 2px 8px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.07);
   border:1px solid rgba(255,201,138,.2);
 }
-.achv-tab-pane{display:none;flex-direction:column;min-height:0;overflow:hidden;}
+.achv-tab-pane{display:none;flex-direction:column;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;}
+.achv-tab-pane::-webkit-scrollbar{display:none;width:0;height:0;}
+/* Utility: bisa digeser sentuh, tanpa scrollbar terlihat */
+.no-scrollbar{-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;}
+.no-scrollbar::-webkit-scrollbar{display:none;width:0;height:0;}
 .achv-tab-pane.active{display:flex;flex:1;}
 
 /* ── Kartu Target/Goal Prestasi: tujuan poin berikutnya, biar poin ada artinya ── */
@@ -2982,7 +2986,8 @@ img,svg{display:block;}
 /* ---------- LEVEL 2: access rights ---------- */
 .l2-pool{flex:0 0 clamp(180px,30%,300px);display:flex;flex-direction:column;gap:10px;overflow:hidden;}
 .l2-pool h4{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--gold-300);margin-bottom:2px;flex:0 0 auto;}
-#l2-pool-list{flex:1;min-height:0;overflow:hidden;}
+#l2-pool-list{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;}
+#l2-pool-list::-webkit-scrollbar{display:none;width:0;height:0;}
 .acc-card{
   background:var(--paper-50);color:var(--ink-text);
   border-radius:13px;padding:10px 12px;display:flex;gap:10px;align-items:center;
@@ -2991,7 +2996,21 @@ img,svg{display:block;}
   border:2px solid transparent;
 }
 .acc-card:active{cursor:grabbing;}
+#x6-pool-list{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;}
+#x6-pool-list::-webkit-scrollbar{display:none;width:0;height:0;}
 .acc-card.dragging{position:fixed;z-index:80;box-shadow:var(--shadow-deep);transform:scale(1.04);}
+@keyframes accCardWrong{
+  0%,100%{transform:translateX(0);}
+  20%,60%{transform:translateX(-5px);}
+  40%,80%{transform:translateX(5px);}
+}
+.acc-card.acc-wrong{animation:accCardWrong .4s ease; border-color:rgba(255,86,86,.6)!important; box-shadow:0 0 0 3px rgba(255,86,86,.25);}
+@keyframes accCardRight{
+  0%{transform:scale(1);}
+  40%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+.acc-card.acc-right{animation:accCardRight .4s ease; border-color:rgba(64,201,145,.7)!important; box-shadow:0 0 0 3px rgba(64,201,145,.25);}
 .acc-card .ac-ico{width:34px;height:34px;border-radius:9px;background:rgba(242,153,74,.18);display:flex;align-items:center;justify-content:center;font-size:16px;flex:0 0 auto;}
 .acc-card .ac-txt b{display:block;font-size:14.5px;line-height:1.3;}
 .acc-card .ac-txt span{font-size:13.5px;color:#5a6570;}
@@ -3006,7 +3025,8 @@ img,svg{display:block;}
 .dropzone .dz-label{display:flex;flex-direction:column;align-items:flex-start;gap:6px;font-size:14px;font-weight:700;color:var(--paper-50);}
 .dropzone .dz-label .tag{font-size:12.5px;padding:2px 8px;border-radius:var(--radius-pill);background:rgba(246,250,254,.12);white-space:nowrap;}
 .dropzone .dz-empty{font-size:13.5px;color:rgba(246,250,254,.87);padding:6px 2px;}
-.dropzone .dz-cards{flex:1;display:flex;flex-direction:column;gap:6px;overflow:auto;min-height:0;}
+.dropzone .dz-cards{flex:1;display:flex;flex-direction:column;gap:6px;overflow:auto;min-height:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;}
+.dropzone .dz-cards::-webkit-scrollbar{display:none;width:0;height:0;}
 .l2-actions{display:flex;justify-content:center;padding:0 0 4px;}
 
 /* ---------- EXTRA 3: Cocokkan Istilah (line-connect) ---------- */
@@ -3018,7 +3038,8 @@ img,svg{display:block;}
 .x4-hud{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;width:100%;max-width:560px;}
 .x4-hud-badge{font-size:12.5px;font-weight:700;color:var(--paper-200);background:rgba(255,255,255,.08);border-radius:999px;padding:6px 12px;}
 .x4-mistake-badge{font-size:12.5px;font-weight:700;color:var(--coral-300,#ff9d8a);}
-.x4-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;width:100%;max-width:560px;overflow-y:auto;flex:1;min-height:0;}
+.x4-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;width:100%;max-width:560px;overflow-y:auto;flex:1;min-height:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;}
+.x4-list::-webkit-scrollbar{display:none;width:0;height:0;}
 .x4-item{display:flex;align-items:center;gap:10px;background:linear-gradient(165deg,var(--ink-800),var(--ink-900));border:2px solid rgba(255,255,255,.14);border-radius:14px;padding:10px 12px;box-shadow:0 4px 0 0 rgba(0,0,0,.22);transition:border-color .18s ease, background .18s ease, transform .18s ease;}
 .x4-item .x4-num{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--teal-500);color:var(--ink-950);font-family:var(--font-display);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
 .x4-item .x4-icon{flex:0 0 auto;font-size:19px;}
@@ -3049,7 +3070,8 @@ img,svg{display:block;}
 .x5-ending-badge.bad{background:rgba(236,83,68,.2);color:var(--coral-300);}
 .m3-pre{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;height:100%;}
 .m3-stage{position:relative;flex:1;display:flex;gap:0;min-height:0;width:100%;}
-.m3-col{flex:1 1 0;display:flex;flex-direction:column;gap:7px;overflow-y:auto;padding:2px 8px;min-height:0;}
+.m3-col{flex:1 1 0;display:flex;flex-direction:column;gap:7px;overflow-y:auto;padding:2px 8px;min-height:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;}
+.m3-col::-webkit-scrollbar{display:none;width:0;height:0;}
 .m3-col.defs{align-items:flex-end;}
 .m3-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;}
 .m3-item{
@@ -3993,6 +4015,17 @@ img,svg{display:block;}
 #btn-hub-glossary{display:inline-flex;align-items:center;gap:6px;padding:5px 12px 5px 8px;border-radius:var(--radius-pill);background:rgba(122,201,214,.14);border:1.5px solid rgba(122,201,214,.38);color:var(--teal-300, #7ac9d6);font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.22);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);transition:background .2s,transform .15s,box-shadow .15s;white-space:nowrap;letter-spacing:.01em;flex-shrink:0;}
 #btn-hub-glossary:hover{background:rgba(122,201,214,.24);transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,0,0,.3);}
 #btn-hub-glossary svg{flex-shrink:0;}
+/* Ditaruh ulang di sini (setelah rule dasar di atas) supaya menang di cascade —
+   sebelumnya rule mobile font-size:0 kalah karena rule dasar di atas posisinya
+   lebih akhir & spesifisitasnya sama, jadi teks "Panduan"/"Kamus" tetap muncul di HP. */
+@media (max-width:640px){
+  #btn-hub-tutorial,#btn-hub-glossary{font-size:0;width:32px;padding:0;justify-content:center;}
+  #btn-hub-tutorial svg,#btn-hub-glossary svg{margin:0;}
+}
+@media (max-height:500px) and (orientation:landscape){
+  #btn-hub-tutorial,#btn-hub-glossary{font-size:0;width:34px;padding:0;justify-content:center;}
+  #btn-hub-tutorial svg,#btn-hub-glossary svg{margin:0;}
+}
 /* ── Term tooltip (ⓘ) — muncul di soal/teks yang mengandung istilah teknis ── */
 .term-info{border-bottom:1.5px dotted rgba(255,201,138,.7);cursor:pointer;white-space:nowrap;}
 .ti-ico{font-size:.78em;color:var(--gold-300, #FFC98A);margin-left:2px;font-style:normal;cursor:pointer;font-weight:700;}
@@ -6817,7 +6850,7 @@ function showLevelReview(levelKey){
         '</div>'+
 
         // Tab content area (scrollable jika perlu)
-        '<div style="flex:1;overflow-y:auto;padding:14px 16px;">'+
+        '<div class="no-scrollbar" style="flex:1;overflow-y:auto;padding:14px 16px;">'+
           '<div id="lr-tab-content"></div>'+
         '</div>'+
 
@@ -7244,7 +7277,7 @@ function showPromosiCertModal(){
         '</div>'+
 
         // Content area
-        '<div style="flex:1;overflow-y:auto;padding:16px;" id="promo-content-area"></div>'+
+        '<div class="no-scrollbar" style="flex:1;overflow-y:auto;padding:16px;" id="promo-content-area"></div>'+
 
         // Materi nav (prev/dots/next) — disembunyikan saat view sertifikat
         '<div id="promo-materi-nav" style="display:none;padding:0 16px 12px;align-items:center;gap:10px;flex-wrap:wrap;">'+
@@ -7751,6 +7784,10 @@ function checkLevel2Advanced(){
     addScore('l2', 70);
     playGood();
     toast('Mode Tantangan Level 2 selesai! 🏆','good');
+    cards.forEach((card,i)=>{
+      setTimeout(()=>{ card.classList.remove('acc-right'); void card.offsetWidth; card.classList.add('acc-right'); }, i*60);
+    });
+    setTimeout(()=>{
     showEko({expr:'bangga', celebrate:true,
       text:'Luar biasa! Kamu berhasil mengkategorikan 7 akun dengan tepat, termasuk peran-peran yang lebih kompleks. Pemahamanmu soal hak akses sudah sangat matang!',
       actions:[
@@ -7758,20 +7795,27 @@ function checkLevel2Advanced(){
         {label:'Main Tantangan Lagi', primary:true, onClick:()=>startLevel2Advanced()}
       ]
     });
+    }, cards.length*60+450);
   } else {
     state.mistakes.l2++;
     playBad();
+    wrong.forEach(id=>{
+      const card=document.querySelector('#screen-l2 .acc-card[data-id="'+id+'"]');
+      if(card){ card.classList.remove('acc-wrong'); void card.offsetWidth; card.classList.add('acc-wrong'); }
+    });
     const tip=L2_ACCOUNTS_ADV.find(a=>a.id===wrong[0]);
+    setTimeout(()=>{
     showEko({expr:'tegur',
       text:'Masih ada yang keliru! '+( tip ? tip.wrongTip : 'Periksa kembali setiap peran dengan teliti.'),
       actions:[{label:'Coba Lagi', primary:true, onClick:()=>{
         wrong.forEach(id=>{
           const card=document.querySelector('#screen-l2 .acc-card[data-id="'+id+'"]');
-          if(card){ document.getElementById('l2-pool-list').appendChild(card); card.dataset.zone=''; }
+          if(card){ card.classList.remove('acc-wrong'); document.getElementById('l2-pool-list').appendChild(card); card.dataset.zone=''; }
         });
         updateL2EmptyStates();
       }}]
     });
+    }, 450);
   }
 }
 
@@ -7827,8 +7871,8 @@ function renderL3DetailAdv(em){
     '<div class="md-body">'+glossify(em.body)+(em.link?('<br><br><span class="fake-link">🔗 '+em.link+'</span>'):'')+'</div>'+
     '<div class="md-actions"><button class="btn-safe" id="l3-adv-proses">✅ Proses / Buka</button><button class="btn-danger" id="l3-adv-hapus">🚫 Hapus &amp; Laporkan Spam</button></div>'+
     '</div>';
-  document.getElementById('l3-adv-proses').onclick=()=>handleL3AdvChoice(em,'proses');
-  document.getElementById('l3-adv-hapus').onclick=()=>handleL3AdvChoice(em,'hapus');
+  document.getElementById('l3-adv-proses').onclick=()=>l3AnimateCardOut('proses', ()=>handleL3AdvChoice(em,'proses'));
+  document.getElementById('l3-adv-hapus').onclick=()=>l3AnimateCardOut('hapus', ()=>handleL3AdvChoice(em,'hapus'));
 }
 function handleL3AdvChoice(em, choice){
   const correct=choice===em.correct;
@@ -8725,6 +8769,10 @@ function checkLevel2(){
     renderStars('l2-stars', state.stars.l2);
     saveProgress();
     playGood();
+    cards.forEach((card,i)=>{
+      setTimeout(()=>{ card.classList.remove('acc-right'); void card.offsetWidth; card.classList.add('acc-right'); }, i*60);
+    });
+    setTimeout(()=>{
     showEko({
       expr:'bangga',
       celebrate:true,
@@ -8742,24 +8790,32 @@ function checkLevel2(){
         }}
       ]
     });
+    }, cards.length*60+450);
   } else {
     state.mistakes.l2++;
     playBad();
+    wrong.forEach(id=>{
+      const card=document.querySelector('#screen-l2 .acc-card[data-id="'+id+'"]');
+      if(card){ card.classList.remove('acc-wrong'); void card.offsetWidth; card.classList.add('acc-wrong'); }
+    });
     const tip = L2_ACCOUNTS.find(a=>a.id===wrong[0]).wrongTip;
     const starsAfter = starsFromMistakes(state.mistakes.l2);
     const warnMsg = starsAfter < 2 ? ' Hati-hati — terlalu banyak kesalahan akan menghalangi kamu membuka Level 3!' : '';
+    setTimeout(()=>{
     showEko({
       expr:'tegur',
       text:'Hati-hati, masih ada akun yang salah kategori! '+tip+warnMsg,
       actions:[{label:'Coba Lagi', primary:true, onClick:()=>{
         wrong.forEach(id=>{
           const card=document.querySelector('#screen-l2 .acc-card[data-id="'+id+'"]');
+          card.classList.remove('acc-wrong');
           document.getElementById('l2-pool-list').appendChild(card);
           card.dataset.zone='';
         });
         updateL2EmptyStates();
       }}]
     });
+    }, 450);
   }
 }
 
@@ -8856,8 +8912,8 @@ function renderL3Detail(em){
     '<div class="md-body">'+glossify(em.body)+(em.link?('<br><br><span class="fake-link">🔗 '+em.link+'</span>'):'')+'</div>'+
     '<div class="md-actions"><button class="btn-safe" id="l3-act-proses">✅ Proses / Buka</button><button class="btn-danger" id="l3-act-hapus">🚫 Hapus &amp; Laporkan Spam</button></div>'+
     '</div>';
-  document.getElementById('l3-act-proses').onclick=()=>handleL3Choice(em,'proses');
-  document.getElementById('l3-act-hapus').onclick=()=>handleL3Choice(em,'hapus');
+  document.getElementById('l3-act-proses').onclick=()=>l3AnimateCardOut('proses', ()=>handleL3Choice(em,'proses'));
+  document.getElementById('l3-act-hapus').onclick=()=>l3AnimateCardOut('hapus', ()=>handleL3Choice(em,'hapus'));
 }
 function handleL3Choice(em, choice){
   const correct = choice===em.correct;
@@ -8922,6 +8978,20 @@ function l3SwipeEnd(e){
     if(danger) danger.style.opacity=0;
   }
   l3SwipeState=null;
+}
+function l3AnimateCardOut(choice, onDone){
+  const card=document.querySelector('#l3-detail .l3-card');
+  if(!card){ onDone(); return; }
+  const isSafe = choice==='proses';
+  const safe=card.querySelector('.stamp-safe'), danger=card.querySelector('.stamp-danger');
+  if(isSafe && safe) safe.style.opacity='1';
+  if(!isSafe && danger) danger.style.opacity='1';
+  card.style.transition='transform .28s cubic-bezier(.3,.6,.4,1), opacity .28s ease';
+  requestAnimationFrame(()=>{
+    card.style.transform='translateX('+(isSafe?700:-700)+'px) rotate('+(isSafe?16:-16)+'deg)';
+    card.style.opacity='0';
+  });
+  setTimeout(onDone, 230);
 }
 function l3SwipeTriggerChoice(choice){
   const advMode=document.getElementById('screen-l3').classList.contains('adv-mode');
