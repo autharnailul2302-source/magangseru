@@ -6507,7 +6507,7 @@ function hubTypewriter(text, el, cursorEl, speed){
       setTimeout(()=>cursorEl.classList.add('hidden'),2800);
     }
   }
-  setTimeout(tick, 600);
+  hubTypewriterTimer=setTimeout(tick, 600);
 }
 
 function renderHub(){
