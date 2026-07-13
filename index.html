@@ -1604,6 +1604,15 @@ img,svg{display:block;}
 .achv-badges-pager{padding-top:12px;}
 @media (max-width:480px){
   .achv-badges-row{grid-template-columns:repeat(2,1fr);}
+  /* Header Papan Prestasi: di HP kolom kiri (judul) & kanan (nama peserta)
+     jadi terlalu sempit kalau disejajarkan, sampai teks judul numpuk
+     vertikal huruf-per-huruf dan tabrakan sama nama sekolah. Susun ke
+     bawah saja di layar sempit. */
+  .achv-player-header{flex-direction:column;align-items:stretch;}
+  .achv-header-left{flex:0 0 auto;}
+  .achv-title-block{flex:1 1 auto;width:auto;}
+  .achv-player-right{width:100%;justify-content:space-between;}
+  .achv-player-info{text-align:left;}
 }
 .achv-badge{
   display:flex;flex-direction:column;align-items:center;gap:5px;
